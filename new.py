@@ -3,6 +3,9 @@ from pygame.locals import *
 
 pygame.init()
 
+clock = pygame.time.Clock()
+fps = 60
+
 screen_width = 700
 screen_height = 700
 
@@ -11,7 +14,7 @@ pygame.display.set_caption('Platformer')
 
 tile_size = 50
 
-bg_img = pygame.image.load('sky1.jpg')
+bg_img = pygame.image.load('img/sky1.jpg')
 bg_img = pygame.transform.scale(bg_img, (700, 700))
 
 
@@ -26,7 +29,7 @@ draw_grid()
 
 class Player():
     def __init__(self, x, y):
-        img = pygame.image.load('m22.png')
+        img = pygame.image.load('img/m22.png')
         self.image = pygame.transform.scale(img, (40, 80))
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -68,8 +71,8 @@ class World():
     def __init__(self, data):
         self.tile_list = []
 
-        dirt_img = pygame.image.load('dirt2.png')
-        grass_img = pygame.image.load('dirt2.png')
+        dirt_img = pygame.image.load('img/dirt2.png')
+        grass_img = pygame.image.load('img/dirt2.png')
 
         row_count = 0
         for row in data:
@@ -121,13 +124,13 @@ world = World(world_data)
 run = True
 while True:
 
+    clock.tick(fps)
+
     screen.blit(bg_img, (0, 0))
 
     world.draw()
 
     player.update()
-
-    print(world.tile_list)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

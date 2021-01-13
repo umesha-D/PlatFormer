@@ -24,13 +24,19 @@ def draw_grid():
         pygame.draw.line(screen, (255, 255, 255), (line * tile_size, 0), (line * tile_size, screen_height))
 
 
-draw_grid()
+#draw_grid()
 
 
 class Player():
     def __init__(self, x, y):
-        img = pygame.image.load('img/m22.png')
-        self.image = pygame.transform.scale(img, (40, 80))
+        self.images_right = []
+        self.index = 0
+        self.counter = 0
+        for num in range(1, 5):
+            img_right = pygame.image.load('img/m1.png')
+            img_right = pygame.transform.scale(img_right, (40, 80))
+            self.images_right.append(img_right)
+        self.image = self.images_right[self.index]
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -139,3 +145,4 @@ while True:
     pygame.display.update()
 
 pygame.quit()
+

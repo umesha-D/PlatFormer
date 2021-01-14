@@ -24,7 +24,7 @@ def draw_grid():
         pygame.draw.line(screen, (255, 255, 255), (line * tile_size, 0), (line * tile_size, screen_height))
 
 
-#draw_grid()
+# draw_grid()
 
 
 class Player():
@@ -57,6 +57,8 @@ class Player():
             dx -= 5
         if key[pygame.K_RIGHT]:
             dx += 5
+
+        self.index += 1
 
         self.vel_y += 1
         if self.vel_y > 10:
@@ -145,4 +147,3 @@ while True:
     pygame.display.update()
 
 pygame.quit()
-
